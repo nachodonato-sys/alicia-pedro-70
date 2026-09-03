@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4efe8" />
+  <meta name="description" content="Invitación al cumpleaños de 70 de Alicia & Pedro" />
+  <title>Alicia & Pedro · 70</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="hero">
+    <nav class="nav">
+      <div class="monogram">A&P</div>
+      <a class="nav-link" href="#rsvp">RSVP</a>
+    </nav>
+
+    <div class="hero-inner reveal">
+      <p class="eyebrow">13 · 12 · 2026</p>
+      <h1>Alicia <span>&</span> Pedro</h1>
+      <p class="hero-number">70</p>
+      <p class="hero-copy">70 Años</p>
+
+      <a href="#detalle" class="primary-btn">Ver invitación</a>
+    </div>
+
+    <div class="scroll-note">Deslizá para descubrir</div>
+  </header>
+
+  <main>
+    <section class="intro section reveal">
+      <p class="kicker">Nos encantaría que seas parte</p>
+      <h2>Celebramos nuestros <em>70</em></h2>
+      <p class="lead">¡Los invitamos a brindar, encontrarnos y compartir un almuerzo y tarde especial!</p>
+    </section>
+
+    <section id="detalle" class="details section">
+      <div class="section-head reveal">
+        <p class="kicker">La fiesta</p>
+        <h2>Guardá la fecha</h2>
+      </div>
+
+      <div class="detail-grid">
+        <article class="detail-card reveal">
+          <span class="detail-label">Fecha</span>
+          <strong>Domingo<br>13 de diciembre</strong>
+        </article>
+
+        <article class="detail-card reveal">
+          <span class="detail-label">Hora</span>
+          <strong>13:00<br>Hs.</strong>
+        </article>
+
+        <article class="detail-card reveal">
+          <span class="detail-label">Dónde</span>
+          <strong>La Escondida<br>de Palermo</strong>
+          <p>Buenos Aires, CABA</p>
+        </article>
+
+        <article class="detail-card reveal">
+          <span class="detail-label">Dress code</span>
+          <strong>Elegante<br>Sport</strong>
+          <p></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="countdown section">
+      <div class="section-head light reveal">
+        <p class="kicker">Falta cada vez menos</p>
+        <h2>La cuenta regresiva</h2>
+      </div>
+
+      <div class="countdown-grid reveal" aria-label="Cuenta regresiva">
+        <div><span id="days">000</span><small>Días</small></div>
+        <div><span id="hours">00</span><small>Horas</small></div>
+        <div><span id="minutes">00</span><small>Minutos</small></div>
+        <div><span id="seconds">00</span><small>Segundos</small></div>
+      </div>
+    </section>
+
+    <section class="location section">
+      <div class="section-head reveal">
+        <p class="kicker">Nos encontramos acá</p>
+        <h2>La Escondida de Palermo</h2>
+        <p class="address">Av. de los Ombúes 32, Ciudad Autónoma de Buenos Aires</p>
+      </div>
+
+      <div class="map-wrap reveal">
+        <iframe
+          title="Mapa de La Escondida de Palermo"
+          src="https://www.google.com/maps?q=Av.%20de%20los%20Omb%C3%BAes%2032%2C%20Buenos%20Aires&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="button-row reveal">
+        <a class="secondary-btn" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/search/?api=1&query=Av.%20de%20los%20Omb%C3%BAes%2032%2C%20Buenos%20Aires">
+          Cómo llegar
+        </a>
+        <button class="secondary-btn" id="calendarBtn" type="button">Agregar al calendario</button>
+      </div>
+    </section>
+
+    <section id="rsvp" class="rsvp section">
+      <div class="rsvp-shell reveal">
+        <div class="section-head">
+          <p class="kicker">RSVP</p>
+          <h2>¿Nos acompañás?</h2>
+          <p>Completá tus datos para confirmar tu asistencia.</p>
+        </div>
+
+        <form id="rsvpForm">
+          <label>
+            Nombre y apellido
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Tu nombre" />
+          </label>
+
+          <div class="form-row">
+            <label>
+              ¿Venís?
+              <select id="attendance" name="attendance" required>
+                <option value="">Elegí una opción</option>
+                <option value="Sí, voy a estar">Sí, voy a estar</option>
+                <option value="No voy a poder">No voy a poder</option>
+              </select>
+            </label>
+
+            <label>
+              Cantidad
+              <input id="guests" name="guests" type="number" min="1" max="10" value="1" />
+            </label>
+          </div>
+<button class="primary-btn submit-btn" type="submit">Confirmar asistencia</button>
+          <p class="form-note">Tu confirmación quedará registrada automáticamente.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nos vemos el 13 de diciembre</p>
+    <div class="footer-names">Alicia <span>&</span> Pedro</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

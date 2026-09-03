@@ -1,0 +1,125 @@
+:root{
+  --paper:#f4efe8;
+  --ink:#27251f;
+  --muted:#766f66;
+  --line:rgba(39,37,31,.16);
+  --dark:#273029;
+  --cream:#fbf8f2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--paper);
+  font-family:"DM Sans",system-ui,sans-serif;
+  overflow-x:hidden;
+}
+.grain{
+  position:fixed; inset:0; pointer-events:none; z-index:99; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+.hero{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  padding:28px clamp(22px,5vw,72px) 34px;
+  overflow:hidden;
+}
+.hero:before,.hero:after{
+  content:""; position:absolute; border:1px solid var(--line); border-radius:50%;
+  width:52vw; height:52vw; max-width:760px; max-height:760px;
+}
+.hero:before{left:-18vw; top:22vh}
+.hero:after{right:-22vw; bottom:-22vw}
+.nav{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.monogram{font-family:"Playfair Display",serif;font-size:22px;letter-spacing:.04em}
+.nav-link{color:var(--ink);text-decoration:none;text-transform:uppercase;letter-spacing:.16em;font-size:12px}
+.hero-inner{
+  margin:auto; text-align:center; position:relative; z-index:2; padding:56px 0 30px;
+}
+.eyebrow,.kicker{
+  text-transform:uppercase; letter-spacing:.22em; font-size:11px; font-weight:600;
+}
+.hero h1,.section h2{
+  font-family:"Playfair Display",serif;
+  font-weight:500;
+}
+.hero h1{
+  font-size:clamp(58px,10vw,142px); line-height:.86; margin:18px 0 0;
+}
+.hero h1 span,.footer-names span{font-style:italic;font-weight:400}
+.hero-number{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(110px,23vw,330px); line-height:.72; margin:14px 0 28px;
+  opacity:.10; font-weight:600;
+}
+.hero-copy{font-family:"Playfair Display",serif;font-size:clamp(18px,2.2vw,28px);line-height:1.35;margin:-8.5rem auto 34px;max-width:760px;position:relative}
+.primary-btn,.secondary-btn{
+  border:0; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+  min-height:50px; padding:0 28px; border-radius:999px; text-decoration:none;
+  font:600 12px/1 "DM Sans",sans-serif; text-transform:uppercase; letter-spacing:.14em;
+}
+.primary-btn{background:var(--dark);color:white}
+.secondary-btn{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.scroll-note{font-size:10px;text-transform:uppercase;letter-spacing:.16em;text-align:center;opacity:.55;position:relative;z-index:2}
+.section{padding:clamp(80px,11vw,150px) clamp(22px,7vw,110px)}
+.intro{text-align:center;max-width:1050px;margin:0 auto}
+.section h2{font-size:clamp(42px,6vw,82px);line-height:1.02;margin:12px 0 30px}
+.section h2 em{font-weight:400}
+.lead{font-family:"Playfair Display",serif;font-size:clamp(20px,2.4vw,31px);line-height:1.5;max-width:820px;margin:0 auto;color:#4e4942}
+.section-head{text-align:center;max-width:850px;margin:0 auto 56px}
+.detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1180px;margin:0 auto}
+.detail-card{border-top:1px solid var(--ink);padding:24px 0 10px}
+.detail-label{text-transform:uppercase;letter-spacing:.18em;font-size:10px;color:var(--muted)}
+.detail-card strong{display:block;font-family:"Playfair Display",serif;font-size:clamp(28px,3vw,42px);font-weight:500;line-height:1.08;margin:36px 0 18px}
+.detail-card p{color:var(--muted)}
+.countdown{background:var(--dark);color:white}
+.light .kicker{opacity:.72}
+.countdown-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto;border-top:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}
+.countdown-grid div{text-align:center;padding:42px 16px;border-right:1px solid rgba(255,255,255,.18)}
+.countdown-grid div:last-child{border-right:0}
+.countdown-grid span{font-family:"Playfair Display",serif;font-size:clamp(48px,7vw,96px);display:block;font-variant-numeric:tabular-nums}
+.countdown-grid small{text-transform:uppercase;letter-spacing:.16em;font-size:10px;opacity:.65}
+.address{color:var(--muted)}
+.map-wrap{max-width:1180px;height:460px;margin:0 auto;overflow:hidden;border-radius:3px}
+.map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(1) contrast(.9)}
+.button-row{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.rsvp{background:var(--cream)}
+.rsvp-shell{max-width:820px;margin:0 auto}
+form{border-top:1px solid var(--line);padding-top:34px}
+label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:22px}
+input,select,textarea{
+  width:100%;margin-top:10px;border:1px solid var(--line);background:transparent;border-radius:2px;
+  padding:15px 14px;font:400 16px/1.3 "DM Sans",sans-serif;color:var(--ink);outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+.form-row{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+.submit-btn{width:100%;margin-top:4px}
+.form-note{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
+footer{text-align:center;padding:70px 20px;background:var(--ink);color:white}
+footer p{text-transform:uppercase;letter-spacing:.18em;font-size:10px;opacity:.7}
+.footer-names{font-family:"Playfair Display",serif;font-size:clamp(42px,7vw,88px);margin-top:14px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){
+  .hero{min-height:96svh}
+  .hero-number{margin-top:26px}
+  .hero-copy{margin:-4.8rem auto 32px;font-size:20px}
+  .detail-grid{grid-template-columns:1fr}
+  .detail-card{padding-bottom:22px}
+  .countdown-grid{grid-template-columns:repeat(2,1fr)}
+  .countdown-grid div:nth-child(2){border-right:0}
+  .countdown-grid div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.18)}
+  .map-wrap{height:340px}
+  .form-row{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}
+}
+
+.success-message{text-align:center;padding:36px 10px 14px}
+.success-message h3{font-family:"Playfair Display",serif;font-size:clamp(30px,5vw,52px);font-weight:500;margin:12px 0}
+.success-message p:last-child{color:var(--muted)}
+.submit-btn:disabled{opacity:.65;cursor:default}
