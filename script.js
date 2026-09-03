@@ -65,6 +65,25 @@ document.getElementById('calendarBtn').addEventListener('click', () => {
 
 const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzdiplBgwG-Zm5axXKHQwigk2WbfePw4x4xVFFjfUx2skLFKu9C3CfhwvfHKvEmAXC0Lw/exec';
 
+
+const attendanceSelect = document.getElementById('attendance');
+const guestsInput = document.getElementById('guests');
+
+function syncGuestsWithAttendance(){
+  if(attendanceSelect.value === 'No voy a poder'){
+    guestsInput.value = 0;
+    guestsInput.min = 0;
+    guestsInput.disabled = true;
+  } else {
+    guestsInput.disabled = false;
+    guestsInput.min = 1;
+    if(Number(guestsInput.value) < 1) guestsInput.value = 1;
+  }
+}
+
+attendanceSelect.addEventListener('change', syncGuestsWithAttendance);
+syncGuestsWithAttendance();
+
 document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -72,7 +91,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   const submitBtn = form.querySelector('.submit-btn');
   const name = document.getElementById('name').value.trim();
   const attendance = document.getElementById('attendance').value;
-  const guests = document.getElementById('guests').value || '1';
+  const guests = attendance === 'No voy a poder' ? '0' : (document.getElementById('guests').value || '1');
 
   if (!name || !attendance) return;
 

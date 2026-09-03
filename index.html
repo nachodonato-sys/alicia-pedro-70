@@ -25,9 +25,7 @@
       <h1>Alicia <span>&</span> Pedro</h1>
       <p class="hero-number">70</p>
       <p class="hero-copy">70 Años</p>
-
-      <a href="#detalle" class="primary-btn">Ver invitación</a>
-    </div>
+</div>
 
     <div class="scroll-note">Deslizá para descubrir</div>
   </header>
@@ -42,7 +40,7 @@
     <section id="detalle" class="details section">
       <div class="section-head reveal">
         <p class="kicker">La fiesta</p>
-        <h2>Guardá la fecha</h2>
+        <h2 class="details-title">Reservá la fecha</h2>
       </div>
 
       <div class="detail-grid">
@@ -67,6 +65,10 @@
           <strong>Elegante<br>Sport</strong>
           <p></p>
         </article>
+      </div>
+
+      <div class="calendar-under-details reveal">
+        <button class="secondary-btn" id="calendarBtn" type="button">Agregar al calendario</button>
       </div>
     </section>
 
@@ -94,7 +96,7 @@
       <div class="map-wrap reveal">
         <iframe
           title="Mapa de La Escondida de Palermo"
-          src="https://www.google.com/maps?q=Av.%20de%20los%20Omb%C3%BAes%2032%2C%20Buenos%20Aires&output=embed"
+          src="https://www.google.com/maps?q=La%20Escondida%20de%20Palermo%2C%20Av.%20de%20los%20Omb%C3%BAes%2032%2C%20Buenos%20Aires&output=embed"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -102,10 +104,10 @@
 
       <div class="button-row reveal">
         <a class="secondary-btn" target="_blank" rel="noopener"
-           href="https://www.google.com/maps/search/?api=1&query=Av.%20de%20los%20Omb%C3%BAes%2032%2C%20Buenos%20Aires">
+           href="https://maps.app.goo.gl/PftVc3bwnhBWZ51p9">
           Cómo llegar
         </a>
-        <button class="secondary-btn" id="calendarBtn" type="button">Agregar al calendario</button>
+        
       </div>
     </section>
 
@@ -134,7 +136,7 @@
             </label>
 
             <label>
-              Cantidad
+              Asistentes
               <input id="guests" name="guests" type="number" min="1" max="10" value="1" />
             </label>
           </div>

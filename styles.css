@@ -123,3 +123,6 @@ footer p{text-transform:uppercase;letter-spacing:.18em;font-size:10px;opacity:.7
 .success-message h3{font-family:"Playfair Display",serif;font-size:clamp(30px,5vw,52px);font-weight:500;margin:12px 0}
 .success-message p:last-child{color:var(--muted)}
 .submit-btn:disabled{opacity:.65;cursor:default}
+
+.details-title{font-size:clamp(36px,4.8vw,64px)!important}
+.calendar-under-details{display:flex;justify-content:center;margin-top:38px}
