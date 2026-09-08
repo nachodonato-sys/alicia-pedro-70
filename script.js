@@ -69,6 +69,8 @@ const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzdiplBgwG-Zm5axX
 const attendanceSelect = document.getElementById('attendance');
 const guestsSelect = document.getElementById('guests');
 const attendeeFields = document.getElementById('attendeeFields');
+const declineNameField = document.getElementById('declineNameField');
+const declineNameInput = document.getElementById('declineName');
 
 const foodOptions = [
   'Sin restricciones',
@@ -126,10 +128,15 @@ function syncRsvpFields(){
     guestsSelect.value = '0';
     guestsSelect.disabled = true;
     attendeeFields.innerHTML = '';
+    declineNameField.hidden = false;
+    declineNameInput.required = true;
     return;
   }
 
   if(isComing){
+    declineNameField.hidden = true;
+    declineNameInput.required = false;
+    declineNameInput.value = '';
     guestsSelect.disabled = false;
 
     if(!guestsSelect.querySelector('option[value="1"]')){
@@ -147,6 +154,9 @@ function syncRsvpFields(){
     return;
   }
 
+  declineNameField.hidden = true;
+  declineNameInput.required = false;
+  declineNameInput.value = '';
   guestsSelect.disabled = true;
   guestsSelect.innerHTML = `
     <option value="">Elegí la cantidad</option>
@@ -180,6 +190,12 @@ document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   if(!attendance) return;
   if(attendance === 'Sí, vamos a estar' && (guests < 1 || guests > 5)) return;
 
+  const declineName = attendance === 'No vamos a poder'
+    ? declineNameInput.value.trim()
+    : '';
+
+  if(attendance === 'No vamos a poder' && !declineName) return;
+
   const attendeeData = [];
   if(attendance === 'Sí, vamos a estar'){
     for(let i = 1; i <= guests; i++){
@@ -196,6 +212,7 @@ document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   const payload = new URLSearchParams({
     asistencia: attendance,
     cantidad: String(guests),
+    nombreNoAsiste: declineName,
     asistente1: attendeeData[0]?.name || '',
     alimentacion1: attendeeData[0]?.food || '',
     asistente2: attendeeData[1]?.name || '',
