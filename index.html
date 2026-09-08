@@ -121,26 +121,29 @@
 
         <form id="rsvpForm">
           <label>
-            Nombre y apellido
-            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Tu nombre" />
+            ¿Van a venir?
+            <select id="attendance" name="attendance" required>
+              <option value="">Elegí una opción</option>
+              <option value="Sí, vamos a estar">Sí, vamos a estar</option>
+              <option value="No vamos a poder">No vamos a poder</option>
+            </select>
           </label>
 
-          <div class="form-row">
-            <label>
-              ¿Venís?
-              <select id="attendance" name="attendance" required>
-                <option value="">Elegí una opción</option>
-                <option value="Sí, voy a estar">Sí, voy a estar</option>
-                <option value="No voy a poder">No voy a poder</option>
-              </select>
-            </label>
+          <label>
+            Asistentes
+            <select id="guests" name="guests" required disabled>
+              <option value="">Elegí la cantidad</option>
+              <option value="1">1 asistente</option>
+              <option value="2">2 asistentes</option>
+              <option value="3">3 asistentes</option>
+              <option value="4">4 asistentes</option>
+              <option value="5">5 asistentes</option>
+            </select>
+          </label>
 
-            <label>
-              Asistentes
-              <input id="guests" name="guests" type="number" min="1" max="10" value="1" />
-            </label>
-          </div>
-<button class="primary-btn submit-btn" type="submit">Confirmar asistencia</button>
+          <div id="attendeeFields" class="attendee-fields" aria-live="polite"></div>
+
+          <button class="primary-btn submit-btn" type="submit">Confirmar asistencia</button>
           <p class="form-note">Tu confirmación quedará registrada automáticamente.</p>
         </form>
       </div>

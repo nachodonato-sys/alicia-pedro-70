@@ -67,42 +67,145 @@ const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzdiplBgwG-Zm5axX
 
 
 const attendanceSelect = document.getElementById('attendance');
-const guestsInput = document.getElementById('guests');
+const guestsSelect = document.getElementById('guests');
+const attendeeFields = document.getElementById('attendeeFields');
 
-function syncGuestsWithAttendance(){
-  if(attendanceSelect.value === 'No voy a poder'){
-    guestsInput.value = 0;
-    guestsInput.min = 0;
-    guestsInput.disabled = true;
-  } else {
-    guestsInput.disabled = false;
-    guestsInput.min = 1;
-    if(Number(guestsInput.value) < 1) guestsInput.value = 1;
+const foodOptions = [
+  'Sin restricciones',
+  'Vegetariano/a',
+  'Vegano/a',
+  'Celíaco/a / Sin TACC'
+];
+
+function renderAttendees(count){
+  attendeeFields.innerHTML = '';
+
+  for(let i = 1; i <= count; i++){
+    const card = document.createElement('div');
+    card.className = 'attendee-card';
+
+    const options = foodOptions
+      .map(option => `<option value="${option}">${option}</option>`)
+      .join('');
+
+    card.innerHTML = `
+      <h3>Asistente ${i}</h3>
+      <label>
+        Nombre y apellido
+        <input
+          type="text"
+          id="attendeeName${i}"
+          name="attendeeName${i}"
+          placeholder="Nombre y apellido"
+          required
+        />
+      </label>
+
+      <label>
+        Restricción alimentaria
+        <select
+          id="attendeeFood${i}"
+          name="attendeeFood${i}"
+          required
+        >
+          ${options}
+        </select>
+      </label>
+    `;
+
+    attendeeFields.appendChild(card);
   }
 }
 
-attendanceSelect.addEventListener('change', syncGuestsWithAttendance);
-syncGuestsWithAttendance();
+function syncRsvpFields(){
+  const isComing = attendanceSelect.value === 'Sí, vamos a estar';
+  const isNotComing = attendanceSelect.value === 'No vamos a poder';
+
+  if(isNotComing){
+    guestsSelect.innerHTML = '<option value="0">0 asistentes</option>';
+    guestsSelect.value = '0';
+    guestsSelect.disabled = true;
+    attendeeFields.innerHTML = '';
+    return;
+  }
+
+  if(isComing){
+    guestsSelect.disabled = false;
+
+    if(!guestsSelect.querySelector('option[value="1"]')){
+      guestsSelect.innerHTML = `
+        <option value="">Elegí la cantidad</option>
+        <option value="1">1 asistente</option>
+        <option value="2">2 asistentes</option>
+        <option value="3">3 asistentes</option>
+        <option value="4">4 asistentes</option>
+        <option value="5">5 asistentes</option>
+      `;
+    }
+
+    renderAttendees(Number(guestsSelect.value) || 0);
+    return;
+  }
+
+  guestsSelect.disabled = true;
+  guestsSelect.innerHTML = `
+    <option value="">Elegí la cantidad</option>
+    <option value="1">1 asistente</option>
+    <option value="2">2 asistentes</option>
+    <option value="3">3 asistentes</option>
+    <option value="4">4 asistentes</option>
+    <option value="5">5 asistentes</option>
+  `;
+  attendeeFields.innerHTML = '';
+}
+
+attendanceSelect.addEventListener('change', syncRsvpFields);
+
+guestsSelect.addEventListener('change', () => {
+  if(attendanceSelect.value === 'Sí, vamos a estar'){
+    renderAttendees(Number(guestsSelect.value) || 0);
+  }
+});
+
+syncRsvpFields();
 
 document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const form = e.currentTarget;
   const submitBtn = form.querySelector('.submit-btn');
-  const name = document.getElementById('name').value.trim();
-  const attendance = document.getElementById('attendance').value;
-  const guests = attendance === 'No voy a poder' ? '0' : (document.getElementById('guests').value || '1');
+  const attendance = attendanceSelect.value;
+  const guests = attendance === 'No vamos a poder' ? 0 : Number(guestsSelect.value || 0);
 
-  if (!name || !attendance) return;
+  if(!attendance) return;
+  if(attendance === 'Sí, vamos a estar' && (guests < 1 || guests > 5)) return;
+
+  const attendeeData = [];
+  if(attendance === 'Sí, vamos a estar'){
+    for(let i = 1; i <= guests; i++){
+      const name = document.getElementById(`attendeeName${i}`).value.trim();
+      const food = document.getElementById(`attendeeFood${i}`).value;
+      if(!name) return;
+      attendeeData.push({name, food});
+    }
+  }
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Enviando...';
 
   const payload = new URLSearchParams({
-    nombre: name,
     asistencia: attendance,
-    cantidad: guests,
-    fechaEnvio: new Date().toISOString()
+    cantidad: String(guests),
+    asistente1: attendeeData[0]?.name || '',
+    alimentacion1: attendeeData[0]?.food || '',
+    asistente2: attendeeData[1]?.name || '',
+    alimentacion2: attendeeData[1]?.food || '',
+    asistente3: attendeeData[2]?.name || '',
+    alimentacion3: attendeeData[2]?.food || '',
+    asistente4: attendeeData[3]?.name || '',
+    alimentacion4: attendeeData[3]?.food || '',
+    asistente5: attendeeData[4]?.name || '',
+    alimentacion5: attendeeData[4]?.food || ''
   });
 
   try {

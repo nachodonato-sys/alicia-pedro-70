@@ -126,3 +126,9 @@ footer p{text-transform:uppercase;letter-spacing:.18em;font-size:10px;opacity:.7
 
 .details-title{font-size:clamp(36px,4.8vw,64px)!important}
 .calendar-under-details{display:flex;justify-content:center;margin-top:38px}
+
+.attendee-fields{display:grid;gap:16px;margin:8px 0 26px}
+.attendee-card{border:1px solid var(--line);padding:20px;border-radius:3px;background:rgba(255,255,255,.25)}
+.attendee-card h3{font-family:"Playfair Display",serif;font-size:24px;font-weight:500;margin:0 0 18px}
+.attendee-card label:last-child{margin-bottom:0}
+.attendee-card select,.attendee-card input{background:transparent}
