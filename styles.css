@@ -132,3 +132,65 @@ footer p{text-transform:uppercase;letter-spacing:.18em;font-size:10px;opacity:.7
 .attendee-card h3{font-family:"Playfair Display",serif;font-size:24px;font-weight:500;margin:0 0 18px}
 .attendee-card label:last-child{margin-bottom:0}
 .attendee-card select,.attendee-card input{background:transparent}
+
+.parking-note{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:20px auto 0;
+  color:var(--muted);
+  font-size:14px;
+}
+.parking-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;
+  height:28px;
+  border:1px solid currentColor;
+  border-radius:50%;
+  font-size:15px;
+  font-weight:700;
+  line-height:1;
+}
+.rsvp-deadline{
+  margin-top:12px;
+  font-size:14px;
+  color:var(--text);
+}
+.rsvp-deadline strong{font-weight:600}
+
+/* v10: estacionamiento debajo de la dirección */
+.parking-note{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:18px auto 26px;
+  color:var(--text);
+  font-size:17px;
+  line-height:1.35;
+}
+.parking-icon{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border:1.5px solid currentColor;
+  border-radius:50%;
+  font-size:19px;
+  font-weight:700;
+  line-height:1;
+}
+@media (max-width:640px){
+  .parking-note{font-size:16px;gap:10px}
+  .parking-icon{width:32px;height:32px;font-size:18px}
+}
+
+/* v11: fondo sutil para el bloque "Celebramos nuestros 70" */
+.intro-highlight{
+  background:rgba(255,255,255,.30);
+}
